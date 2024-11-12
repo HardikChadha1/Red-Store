@@ -106,7 +106,39 @@
     </div>
     
 </div>
+<form action="/submit-order" method="POST">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="address" placeholder="Address" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+    <input type="hidden" name="cart_items" value='["item1", "item2"]'> <!-- Replace with actual cart data -->
+    <button type="submit">Proceed with Order</button>
+  </form>
+  
+  <button onclick="submitOrder()">Submit Order</button>
 
+  <script>
+  async function submitOrder() {
+      const orderData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          address: document.getElementById('address').value,
+          cartItems: ["item1", "item2"]  // Example items; replace with real cart items
+      };
+      
+      const response = await fetch('http://localhost:5000/submit-order', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(orderData)
+      });
+  
+      const result = await response.json();
+      alert(result.message);
+  }
+  </script>
+  
 <!----------Footer---------------> 
 
 <div class="footer">
