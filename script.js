@@ -19,5 +19,6 @@ async function submitOrder() {
 
     const result = await response.json();
     alert(result.message);  // Display success message
+    
 }
 </script>
